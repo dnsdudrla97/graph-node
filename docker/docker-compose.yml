@@ -12,15 +12,17 @@ services:
       - ipfs
       - postgres
     extra_hosts:
-      - host.docker.internal:host-gateway
+            - 172.19.0.1:host-gateway
     environment:
       postgres_host: postgres
       postgres_user: graph-node
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs:5001'
-      ethereum: 'mainnet:http://host.docker.internal:8545'
+      ethereum: 'ropsten:https://ropsten.infura.io/v3/4e39f45652a7415f974e0cd5e589e238'
       GRAPH_LOG: info
+      GRAPH_ALLOW_NON_DETERMINISTIC_FULLTEXT_SEARCH: 'true'
+      GRAPH_ALLOW_NON_DETERMINISTIC_IPFS: 'true'
   ipfs:
     image: ipfs/go-ipfs:v0.10.0
     ports:
